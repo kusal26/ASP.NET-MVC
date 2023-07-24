@@ -1,0 +1,69 @@
+﻿@model IEnumerable<webapp2.Models.Player>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="row">
+
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["PlayerNameSort"]">@Html.DisplayNameFor(model => model.PlayerName)</a>
+                @*@Html.DisplayNameFor(model => model.PlayerName)*@
+            </th>
+            <th scope="row">
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["PositionSort"]">@Html.DisplayNameFor(model => model.Position)</a>
+              @*  @Html.DisplayNameFor(model => model.Position)*@
+            </th>
+            <th scope="row">
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["DatejoinedSort"]"> @Html.DisplayNameFor(model => model.Datejoined)</a>
+              @*  @Html.DisplayNameFor(model => model.Datejoined)*@
+            </th>
+            <th scope="row">
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["ClubSort"]">@Html.DisplayNameFor(model => model.Club)</a>
+                @*@Html.DisplayNameFor(model => model.Club)*@
+            </th>
+            <th scope="row">
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["CountrySort"]"> @Html.DisplayNameFor(model => model.Country)</a>
+
+               @* @Html.DisplayNameFor(model => model.Country)*@
+            </th>
+           
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlayerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Position)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Datejoined)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Club.ClubName)
+                
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Country.CountryName)
+            </td>
+            <td>
+                
+                
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
